@@ -1,3 +1,5 @@
+from Input_to_file import Add_to_file as atf
+
 import os
 
 def clear():
@@ -20,7 +22,12 @@ def work_log():
             clear()
             print("Unfortunately somthing went wrong sorry.\n{}\nPlease try again".format(err))
             continue
-        if choice.lower() == "c":
+        if choice.lower() == "a":
+            clear()
+            atf()
+        elif choice.lower() == "b":
+            pass              
+        elif choice.lower() == "c":
             break
 
 
