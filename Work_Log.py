@@ -12,6 +12,7 @@ def work_log():
     clear()
     print("WORK LOG")
     while True:
+        clear()
         try:
             choices = ["a", "b", "c"]
             choice = input("""
