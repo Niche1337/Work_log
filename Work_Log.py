@@ -1,6 +1,9 @@
-from Input_to_file import Add_to_file as atf
+from Input_to_file import Add_to_file
 
 import os
+
+file = "worklog.csv"
+atf = Add_to_file()
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -24,7 +27,7 @@ def work_log():
             continue
         if choice.lower() == "a":
             clear()
-            atf()
+            atf.add_data(file)
         elif choice.lower() == "b":
             pass              
         elif choice.lower() == "c":
