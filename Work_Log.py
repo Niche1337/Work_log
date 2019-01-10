@@ -23,7 +23,6 @@ def work_log():
             if choice.lower() not in choices:
                 raise ValueError("Enter the valid choices please. a, b or c")
         except ValueError as err:
-            clear()
             print("Unfortunately somthing went wrong sorry.\n{}\nPlease try again".format(err))
             continue
         if choice.lower() == "a":
