@@ -1,9 +1,11 @@
 from Input_to_file import Add_to_file
+from Search_file import Search_file
 
 import os
 
 FILE = "worklog.csv"
 atf = Add_to_file()
+sf = Search_file(FILE)
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -29,7 +31,8 @@ def work_log():
             clear()
             atf.add_data(FILE)
         elif choice.lower() == "b":
-            pass              
+            clear()
+            sf.search_method()
         elif choice.lower() == "c":
             break
 

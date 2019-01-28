@@ -10,7 +10,8 @@ class Add_to_file():
         #TODO add time spent to the csv
         questions = ["Date of the task\nPlease use the DD/MM/YYYY: ",
                     "Title of the task: ",
-                    "Notes (Optional, you can leave this empty): ",]
+                    "How long have you spent(mins) on the task: ",
+                    "Notes (Optional, you can leave this empty): "]
         print(file)
 
         clear(self)
@@ -26,8 +27,12 @@ class Add_to_file():
                 q2 = input(questions[1])    
                 data.append(q2)
                 clear(self)
-                q3 = input(questions[2])    
-                data.append(q3 + "\n")
+                q3 = input(questions[2])
+                data.append(q3)
+                clear(self)
+                q4 = input(questions[3])    
+                data.append(q2)
+                data.append(q4 + "\n")
                 break
             except ValueError as err:               
                 print("Something went wrong sorry\n{}".format(err))
