@@ -18,10 +18,10 @@ def work_log():
         try:
             choices = ["a", "b", "c"]
             choice = input("""
-    What would you like to do?
-    a) Add new entry
-    b) Search in existing entries
-    c) Quit program\n""")
+What would you like to do?
+a) Add new entry
+b) Search in existing entries
+c) Quit program\n""")
             if choice.lower() not in choices:
                 raise ValueError("Enter the valid choices please. a, b or c")
         except ValueError as err:
