@@ -1,5 +1,6 @@
 import os
 import datetime
+import csv
 
 def clear(self):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -8,6 +9,10 @@ class Search_file():
 
     def __init__(self, file):
         self.file = file
+        self.work_log = []
+        with open(self.file, newline = '') as file:
+            reader = csv.DictReader(file)
+            self.work_log = list(reader)     
     
     def search_method(self):
         while True:
@@ -25,7 +30,7 @@ Please pick an option.\n""")
             except ValueError as err:
                 print("Unfortunately somthing went wrong sorry.\n{}\nPlease try again".format(err))
             if choice.lower() == "a":
-                break
+                print(self.work_log)
             elif choice.lower() == "b":
                 break              
             elif choice.lower() == "c":
