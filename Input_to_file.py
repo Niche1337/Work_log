@@ -31,7 +31,6 @@ class Add_to_file():
                 data.append(q3)
                 clear(self)
                 q4 = input(questions[3])    
-                data.append(q2)
                 data.append(q4 + "\n")
                 break
             except ValueError as err:               
