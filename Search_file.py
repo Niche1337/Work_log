@@ -32,14 +32,26 @@ Please pick an option.\n""")
                 print("Unfortunately somthing went wrong sorry.\n{}\nPlease try again".format(err))
             if choice.lower() == "a":
                 ##Search by date
-                print(self.work_log)
+                x = 1
+                try:
+                    date_search = input("What is the date you are looking for?\nPlease use the DD/MM/YYYY: ")
+                    datetime.datetime.strptime(date_search, '%d/%m/%Y') 
+                    for log in self.work_log:
+                        if log[3] == "":
+                            log[3] = "N/a"
+                        if date_search == log[0]:
+                            print("{}) Title: {}, Date: {}, Time Spent: {}, Extra Notes: {}".format(x, log[0], log[1], log[2], log[3]))
+                            x += 1
+
+                except ValueError as err:               
+                    print("Something went wrong sorry\n{}".format(err))
             elif choice.lower() == "b":
                 ##search by time spent
                 x = 1
                 try:
-                    task_time = int(input("How long (mins) is the task you are looking for? "))
+                    task_time = int(input("How long (mins) is the task you are looking for: "))
                     for log in self.work_log:
-                        
+                        ##needs to be refactored
                         if log[3] == "":
                             log[3] = "N/a"
                         if task_time == int(log[2]):
@@ -49,13 +61,13 @@ Please pick an option.\n""")
                         #     print("You entered a invalid number or the task/s with those minutes does not exist.")
                         #     break
                 except ValueError:
-                    print("Enter a valid number in minutes")
+                    print("Enter a valid number in minutes.")
                 if input("Would you like to search again Y/n? ").upper() != "Y":
                     break
             elif choice.lower() == "c":
                 ##search by exact name
                 x = 1
-                exact_term = input("What is the name of the task or details? ").lower()
+                exact_term = input("What is the name of the task or details: ").lower()
                 for log in self.work_log:
                     if log[3] == "":
                         log[3] = "N/a"
