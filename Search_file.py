@@ -57,7 +57,6 @@ Please pick an option.\n""")
                 x = 1
                 exact_term = input("What is the name of the task or details? ").lower()
                 for log in self.work_log:
-                    
                     if log[3] == "":
                         log[3] = "N/a"
                     if exact_term in log[1].lower() or exact_term in log[3].lower():
