@@ -17,7 +17,9 @@ class Search_file():
             return ("{}) Title: {}, Date: {}, Time Spent: {}, Extra Notes: {}".format(x, log[0], log[1], log[2], log[3]))
 
         def list_choices(log):
-            os.system('cls' if os.name == 'nt' else 'clear')
+            def clear():
+                 os.system('cls' if os.name == 'nt' else 'clear')
+            clear()
             print("There are {} search results".format(len(log)))
             x = len(log)
             y = 0
@@ -25,17 +27,25 @@ class Search_file():
             while True:
                 ask_option = input("Would you like to see the next search entry, previous or quit search? Next/Prev/Q ").upper()
                 if ask_option == "NEXT" or ask_option == "N":
-                    y += 1
-                    if (log.index(log[y])-1) == x:
+                    
+                    if (log.index(log[y])+1) == x:
+                        clear()
                         print("This is the last item for the search results.")
+                        print(log[y])
                     else:
+                        y += 1
+                        clear()
                         print(log[y])
                 elif ask_option == "PREV" or ask_option == "P":
-                    y -= 1
-                    if (y+1) == x:
-                        print("This is the first item for the search results.")    
+                    if (log.index(log[y])-1) == -1:
+                        clear()
+                        print("This is the first item for the search results.")   
+                        print(log[y]) 
                     else:
-                        print(log[y])                    
+                        y -= 1
+                        clear()
+                        print(log[y])          
+
                 elif ask_option == "Q":    
                     break     
                 else:
@@ -50,6 +60,7 @@ a) Find by date?
 b) Find by time spent?
 c) Find by exact search?
 d) Find by pattern?
+n) To cancel search.
 Please pick an option.\n""")
 
                 if choice.lower() not in choices:
@@ -79,16 +90,15 @@ Please pick an option.\n""")
                 x = 1
                 try:
                     task_time = int(input("How long (mins) is the task you are looking for: "))
+                    list_of_choices = [] 
                     for log in self.work_log:
                         ##needs to be refactored
                         if log[3] == "":
                             log[3] = "N/a"
                         if task_time == int(log[2]):
-                            print(choice_string(log, x))
+                            list_of_choices.append(choice_string(log, x))
                             x += 1
-                        # elif x == 1:
-                        #     print("You entered a invalid number or the task/s with those minutes does not exist.")
-                        #     break
+                    list_choices(list_of_choices)
                 except ValueError:
                     print("Enter a valid number in minutes.")
                 if input("Would you like to search again Y/n? ").upper() != "Y":
@@ -97,24 +107,22 @@ Please pick an option.\n""")
                 ##search by exact name
                 x = 1
                 exact_term = input("What is the name of the task or details: ").lower()
+                list_of_choices = [] 
                 for log in self.work_log:
                     if log[3] == "":
                         log[3] = "N/a"
                     if exact_term in log[1].lower() or exact_term in log[3].lower():
-                        print(choice_string(log, x))
+                        list_of_choices.append(choice_string(log, x))
                         x += 1
-                    # elif x == 1:
-                    #     print("You entered an incorrect term or it does not exist")
-                    #     continue
+                list_choices(list_of_choices)
                 if input("Would you like to search again Y/n? ").upper() != "Y":
                     break
             elif choice.lower() == "d":
                 #TODO regex search
                 ##search by regEx
                 break
+            elif choice.lower() == "n":
+                break
 
-
-### listing funtion for all choices
-### back and forth method
 ### deletion method
 #### Nayans password "741852963"
